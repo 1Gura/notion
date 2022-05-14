@@ -23,7 +23,6 @@ export class BaseService {
   }
 
   public get(action: string): Observable<any> {
-    debugger
     return this.httpClient.get(`${this.prefix}/${action}`, {headers: this.headers}).pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
   }
 
@@ -60,14 +59,6 @@ export class BaseService {
     return this.httpClient.delete(`${this.prefix}/${action}`, {headers: this.headers})
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
 
-  }
-
-  private getUserInfo(): void {
-    this.get('getUserInfo')
-      .pipe(first())
-      .subscribe((data) => {
-        debugger
-      });
   }
 
   protected handleError(error: HttpErrorResponse) {

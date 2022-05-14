@@ -41,7 +41,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.registerForm.get('repeatPassword')!.valueChanges)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
-        debugger
         this.passwordCorrect = this.checkPassword();
       });
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    console.log('info');
   }
 
 }

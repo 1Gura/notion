@@ -9,6 +9,7 @@ import { plainToClass } from 'class-transformer';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { UserModel } from '../../model/user.model';
 import { JwtModel } from '../../model/jwt.model';
+import { AuthGuard } from '../../guards/auth.guard';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,16 @@ export class AuthService extends BaseService {
 
 
   constructor(httpClient: HttpClient) {
-    super(httpClient, 'https://localhost:7151/api/AuthManagement/');
+    super(httpClient, 'https://localhost:7151/api/AuthManagement');
+  }
+
+  public isAuth(): Observable<boolean> {
+    return this.getParameters('getUserInfo', {userEmail: this.user.email});
+  }
+
+  public getUserInfo(): Observable<UserModel> {
+    return this.getParameters('getUserInfo', {userEmail: this.user.email})
+      .pipe(map((data: UserModel) => plainToClass(UserModel, data)));
   }
 
   public setJwtInfo(jwtInfo: JwtResponseModel): void {
@@ -28,6 +38,7 @@ export class AuthService extends BaseService {
     localStorage.setItem('refreshToken', jwtInfo.refreshToken);
     this.token = jwtInfo.token;
     this.refreshToken = jwtInfo.refreshToken;
+    this.user.email = jwtInfo.userEmail;
   }
 
   public getJwtInfo(jwtInfo: JwtResponseModel): JwtModel {
