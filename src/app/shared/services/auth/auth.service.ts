@@ -1,20 +1,40 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
-import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable, Subject } from 'rxjs';
 import { RegisterModel } from '../../model/register.model';
 import { JwtResponseModel } from '../../model/jwt-response.model';
 import { AuthModel } from '../../model/auth.model';
 import { plainToClass } from 'class-transformer';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
+import { UserModel } from '../../model/user.model';
+import { JwtModel } from '../../model/jwt.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends BaseService {
+  public user: UserModel = new UserModel();
+  public token: string | null = '';
+  public refreshToken: string | null = '';
+
 
   constructor(httpClient: HttpClient) {
     super(httpClient, 'https://localhost:7151/api/AuthManagement/');
+  }
+
+  public setJwtInfo(jwtInfo: JwtResponseModel): void {
+    localStorage.setItem('token', jwtInfo.token);
+    localStorage.setItem('refreshToken', jwtInfo.refreshToken);
+    this.token = jwtInfo.token;
+    this.refreshToken = jwtInfo.refreshToken;
+  }
+
+  public getJwtInfo(jwtInfo: JwtResponseModel): JwtModel {
+    // const token: string | null = localStorage.getItem('token');
+    // const refreshToken: string | null = localStorage.getItem('refreshToken');
+    // return new JwtModel(token ? token : '', refreshToken ? refreshToken : '');
+    return new JwtModel();
   }
 
   public register(registerForm: RegisterModel): Observable<JwtResponseModel> {
@@ -30,7 +50,7 @@ export class AuthService extends BaseService {
     return this.getParameters('UniqEmail', {email});
   }
 
-  emailExists(email: string): Observable<boolean | null> {
+  public emailExists(email: string): Observable<boolean | null> {
     return this.checkUniqEmail(email).pipe(
       debounceTime(1000),
       distinctUntilChanged(),
@@ -40,7 +60,7 @@ export class AuthService extends BaseService {
     );
   }
 
-  uniqueEmailValidator(): AsyncValidatorFn {
+  public uniqueEmailValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return this.emailExists(control.value).pipe(
         map((exists) => {
