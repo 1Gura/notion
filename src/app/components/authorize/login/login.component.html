@@ -1,0 +1,23 @@
+<form class="authorize__form">
+  <mat-form-field appearance="standard">
+    <mat-label>Email</mat-label>
+    <input matInput>
+    <mat-icon *ngIf="true; else doneEmail" matSuffix>alternate_email</mat-icon>
+    <ng-template #doneEmail>
+      <mat-icon matSuffix>done</mat-icon>
+    </ng-template>
+    <mat-hint *ngIf="false">Hint</mat-hint>
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Password</mat-label>
+    <input matInput>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint *ngIf="false">Hint</mat-hint>
+  </mat-form-field>
+  <button mat-stroked-button color="primary">Войти</button>
+  <div class="authorize__registration">
+    <mat-label class="label">Еще не зарегистрированы?</mat-label>
+    <button mat-raised-button color="primary">Регистрация</button>
+  </div>
+</form>
+

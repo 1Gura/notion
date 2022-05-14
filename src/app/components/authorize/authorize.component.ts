@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    console.log('start');
   }
 
 }
