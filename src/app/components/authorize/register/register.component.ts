@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthorizeFormGroup } from '../shared/form-group/authorize.form-group';
 import { Validators } from '@angular/forms';
 import { merge, Subject, takeUntil } from 'rxjs';
+import { SnackBarService } from '../../../shared/services/snack-bar-service/snack-bar.service';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,10 @@ import { merge, Subject, takeUntil } from 'rxjs';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   public registerForm: AuthorizeFormGroup = new AuthorizeFormGroup();
+  public passwordCorrect: boolean = true;
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private snackBar: SnackBarService) {
   }
 
   public ngOnInit(): void {
@@ -39,13 +41,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.registerForm.get('repeatPassword')!.valueChanges)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => {
-
+        debugger
+        this.passwordCorrect = this.checkPassword();
       });
   }
 
   private checkPassword(): boolean {
-    return !!this.registerForm.get('password')?.value ===
-      this.registerForm.get('repeatPassword')?.value
+    return this.registerForm.get('password')?.value ===
+      this.registerForm.get('repeatPassword')?.value;
+  }
+
+  public submitRegister(): void {
+    if (this.registerForm.valid) {
+      console.log(this.registerForm);
+      return;
+    }
+    this.registerForm.markAllAsTouched();
+    this.snackBar.openSnackBar('Форма не валидна');
   }
 }
 
