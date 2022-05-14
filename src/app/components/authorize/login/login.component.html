@@ -1,23 +1,23 @@
-<form class="authorize__form">
+<form class="authorize__form" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
   <mat-form-field appearance="standard">
     <mat-label>Email</mat-label>
-    <input matInput>
+    <input matInput formControlName="email">
     <mat-icon *ngIf="true; else doneEmail" matSuffix>alternate_email</mat-icon>
     <ng-template #doneEmail>
       <mat-icon matSuffix>done</mat-icon>
     </ng-template>
-    <mat-hint *ngIf="false">Hint</mat-hint>
+    <mat-error class>{{!!loginForm?.get('email')!.errors ? 'Email не валиден' : ''}}</mat-error>
   </mat-form-field>
   <mat-form-field appearance="standard">
     <mat-label>Password</mat-label>
-    <input matInput>
+    <input matInput formControlName="password">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint *ngIf="false">Hint</mat-hint>
+    <mat-error>{{!!loginForm?.get('password')!.errors ? 'Пароль должен быть не менее 6 символов' : ''}}</mat-error>
   </mat-form-field>
   <button mat-stroked-button color="primary">Войти</button>
   <div class="authorize__registration">
     <mat-label class="label">Еще не зарегистрированы?</mat-label>
-    <button mat-raised-button color="primary">Регистрация</button>
+    <button mat-raised-button color="primary" (click)="routeRegister($event)">Регистрация</button>
   </div>
 </form>
 
