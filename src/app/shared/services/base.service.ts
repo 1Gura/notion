@@ -29,11 +29,10 @@ export class BaseService {
   public getParameters(action: string, params: { [index: string]: any }): Observable<any> {
     let queryParams: HttpParams = new HttpParams();
     let key: string = '';
-    for (key in params) {
+    for (key in params)
       if (params.hasOwnProperty(key)) {
         queryParams = queryParams.append(key, params[key]);
       }
-    }
     return this.httpClient.get(`${this.prefix}/${action}`, {
       params: queryParams
     }).pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
@@ -59,6 +58,10 @@ export class BaseService {
     return this.httpClient.delete(`${this.prefix}/${action}`, {headers: this.headers})
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
 
+  }
+
+  public setHeader(name: string, value: string): void {
+    this.headers = this.headers.append(name, value);
   }
 
   protected handleError(error: HttpErrorResponse) {

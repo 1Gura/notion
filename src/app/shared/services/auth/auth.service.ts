@@ -9,7 +9,8 @@ import { plainToClass } from 'class-transformer';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { UserModel } from '../../model/user.model';
 import { JwtModel } from '../../model/jwt.model';
-import { AuthGuard } from '../../guards/auth.guard';
+import { RequestTokenModel } from '../../model/request-token.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class AuthService extends BaseService {
   }
 
   public isAuth(): Observable<boolean> {
-    return this.getParameters('getUserInfo', {userEmail: this.user.email});
+    const userEmail: string = this.getJwtInfo().userEmail;
+    return this.getParameters('getUserInfo', {userEmail});
   }
 
   public getUserInfo(): Observable<UserModel> {
@@ -36,16 +38,20 @@ export class AuthService extends BaseService {
   public setJwtInfo(jwtInfo: JwtResponseModel): void {
     localStorage.setItem('token', jwtInfo.token);
     localStorage.setItem('refreshToken', jwtInfo.refreshToken);
+    localStorage.setItem('userEmail', jwtInfo.userEmail);
     this.token = jwtInfo.token;
     this.refreshToken = jwtInfo.refreshToken;
     this.user.email = jwtInfo.userEmail;
   }
 
-  public getJwtInfo(jwtInfo: JwtResponseModel): JwtModel {
-    // const token: string | null = localStorage.getItem('token');
-    // const refreshToken: string | null = localStorage.getItem('refreshToken');
-    // return new JwtModel(token ? token : '', refreshToken ? refreshToken : '');
-    return new JwtModel();
+  public getJwtInfo(): JwtModel {
+    const token: string | null = localStorage.getItem('token');
+    const refreshToken: string | null = localStorage.getItem('refreshToken');
+    const userEmail: string | null = localStorage.getItem('userEmail');
+    return new JwtModel(
+      token ? token : '',
+      refreshToken ? refreshToken : '',
+      userEmail ? userEmail : '');
   }
 
   public register(registerForm: RegisterModel): Observable<JwtResponseModel> {
@@ -56,6 +62,12 @@ export class AuthService extends BaseService {
     return this.post('login', loginForm)
       .pipe(map((data: JwtResponseModel) => plainToClass(JwtResponseModel, data)));
   }
+
+  public getRefreshToken(requestToken: RequestTokenModel): Observable<JwtResponseModel> {
+    return this.post('RefreshToken', requestToken)
+      .pipe(map((data: JwtResponseModel) => plainToClass(JwtResponseModel, data)));
+  }
+
 
   public checkUniqEmail(email: string): Observable<any> {
     return this.getParameters('UniqEmail', {email});

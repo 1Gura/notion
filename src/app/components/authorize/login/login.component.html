@@ -2,7 +2,7 @@
   <mat-form-field appearance="standard">
     <mat-label>Email</mat-label>
     <input matInput formControlName="email">
-    <mat-icon *ngIf="true; else doneEmail" matSuffix>alternate_email</mat-icon>
+    <mat-icon *ngIf="!!loginForm?.get('email')!.errors; else doneEmail" matSuffix>alternate_email</mat-icon>
     <ng-template #doneEmail>
       <mat-icon matSuffix>done</mat-icon>
     </ng-template>
@@ -11,7 +11,11 @@
   <mat-form-field appearance="standard">
     <mat-label>Password</mat-label>
     <input matInput formControlName="password">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-icon *ngIf="!!loginForm?.get('password')!.errors; else donePassword" matSuffix>sentiment_very_satisfied
+    </mat-icon>
+    <ng-template #donePassword>
+      <mat-icon matSuffix>done</mat-icon>
+    </ng-template>
     <mat-error>{{!!loginForm?.get('password')!.errors ? 'Пароль должен быть не менее 6 символов' : ''}}</mat-error>
   </mat-form-field>
   <button mat-stroked-button color="primary">Войти</button>

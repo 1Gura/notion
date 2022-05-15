@@ -12,6 +12,7 @@ const routes: Routes = [
     path: 'authorization',
     loadChildren: () => import('./components/authorize/authorize.module').then(m => m.AuthorizeModule)
   },
+
 ];
 
 @NgModule({
