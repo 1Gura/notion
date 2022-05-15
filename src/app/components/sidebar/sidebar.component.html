@@ -1,0 +1,37 @@
+<div class="sidebar">
+  <div class="sidebar__header">
+    <p class="sidebar__user-info">
+      {{userInfo.userName}}
+    </p>
+    <nav class="sidebar__sidebar-menu">
+      <ul>
+        <li class="sidebar-menu-item" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>search</mat-icon>
+          Find
+        </li>
+        <li class="sidebar-menu-item" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>schedule</mat-icon>
+          All Updates
+        </li>
+        <li class="sidebar-menu-item" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>settings</mat-icon>
+          Setting & Members
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <nav class="sidebar__list">
+    <p>Private</p>
+    <ul>
+      <li *ngFor="let page of listPageNote" class="sidebar-menu-item" fxLayout="row" fxLayoutAlign="start center"
+          fxLayoutGap="30px">
+        <mat-icon>search</mat-icon>
+        {{page.title}}
+      </li>
+    </ul>
+  </nav>
+  <div class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center">
+    <mat-icon>add</mat-icon>
+    <div>New page</div>
+  </div>
+</div>

@@ -27,11 +27,17 @@ export class AuthService extends BaseService {
 
   public isAuth(): Observable<boolean> {
     const userEmail: string = this.getJwtInfo().userEmail;
-    return this.getParameters('getUserInfo', {userEmail});
+    return this.getParameters('getUserInfo', {userEmail})
+      .pipe(
+        map((data: UserModel) => {
+          return !!(data.email && data.userName);
+        })
+      );
   }
 
   public getUserInfo(): Observable<UserModel> {
-    return this.getParameters('getUserInfo', {userEmail: this.user.email})
+    const userEmail: string = this.getJwtInfo().userEmail;
+    return this.getParameters('getUserInfo', {userEmail})
       .pipe(map((data: UserModel) => plainToClass(UserModel, data)));
   }
 
