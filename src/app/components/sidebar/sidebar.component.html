@@ -25,12 +25,12 @@
     <ul>
       <li *ngFor="let page of listPageNote" class="sidebar-menu-item" fxLayout="row" fxLayoutAlign="start center"
           fxLayoutGap="30px">
-        <mat-icon>search</mat-icon>
+        <angular-emojis></angular-emojis>
         {{page.title}}
       </li>
     </ul>
   </nav>
-  <div class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center">
+  <div class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center" (click)="openDialog()">
     <mat-icon>add</mat-icon>
     <div>New page</div>
   </div>

@@ -4,6 +4,7 @@ import { SidebarComponent } from './sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AngularEmojisModule } from 'angular-emojis';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     MatIconModule,
     FlexModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    AngularEmojisModule
   ],
   exports: [SidebarComponent]
 })

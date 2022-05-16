@@ -4,6 +4,8 @@ import { RootStateService } from '../root/shared/root-state/root-state.service';
 import { Subject, take, takeUntil } from 'rxjs';
 import { PageNoteService } from '../root/shared/service/page-note.service';
 import { PageNoteModel } from '../root/shared/model/page-note.model';
+import { MatDialog } from '@angular/material/dialog';
+import { NewPageFormComponent } from '../shared/common/new-page-form/new-page-form.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +17,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public listPageNote: PageNoteModel[] = [];
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private rootState: RootStateService, private pageNoteService: PageNoteService) {
+  constructor(private rootState: RootStateService, private pageNoteService: PageNoteService, private dialog: MatDialog) {
   }
 
   public ngOnInit(): void {
@@ -25,7 +27,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.pageNoteService.getPageNote()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((data: PageNoteModel[]) => {
-        debugger
         console.log(data);
         this.listPageNote = data;
       });
@@ -37,4 +38,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
 
+  public openDialog(): void {
+    const dialogRef = this.dialog.open(NewPageFormComponent, {
+      data: {userName: this.rootState._user.value.userName}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+
+  }
 }

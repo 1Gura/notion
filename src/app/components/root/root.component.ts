@@ -3,6 +3,10 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 import { Subject, take, takeUntil } from 'rxjs';
 import { UserModel } from '../../shared/model/user.model';
 import { RootStateService } from './shared/root-state/root-state.service';
+import { JwtModel } from '../../shared/model/jwt.model';
+import { RequestTokenModel } from '../../shared/model/request-token.model';
+import { JwtResponseModel } from '../../shared/model/jwt-response.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +16,25 @@ import { RootStateService } from './shared/root-state/root-state.service';
 export class RootComponent implements OnInit, OnDestroy {
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private authService: AuthService, private rootState: RootStateService) {
+  constructor(
+    private authService: AuthService,
+    private rootState: RootStateService,
+    private router: Router) {
   }
 
   public ngOnInit(): void {
+    // const jwtInfo: JwtModel = this.authService.getJwtInfo();
+    // if (jwtInfo.token && jwtInfo.refreshToken && jwtInfo.userEmail) {
+    //   this.authService.getRefreshToken(new RequestTokenModel(jwtInfo.token, jwtInfo.refreshToken))
+    //     .pipe(take(1))
+    //     .subscribe((data: JwtResponseModel) => {
+    //       if (data) {
+    //         debugger
+    //         this.authService.setJwtInfo(data);
+    //         this.router.navigate(['./root']);
+    //       }
+    //     });
+    // }
     this.authService.getUserInfo()
       .pipe(
         take(1),
@@ -29,5 +48,10 @@ export class RootComponent implements OnInit, OnDestroy {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
+
+  addEmoji(event: any) {
+    console.log(event);
+  }
+
 
 }

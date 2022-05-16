@@ -1,0 +1,57 @@
+<mat-dialog-content class="mat-typography">
+  <div class="new-page-form">
+    <header class="new-page-form__header" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>fullscreen</mat-icon>
+          Open as page
+        </div>
+        <div class="new-page-form__delimiter">|</div>
+        <div>Add to {{data.userName}}</div>
+      </div>
+      <div class="new-page-form__height30" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <div>
+          Share
+        </div>
+        <div>
+          <mat-icon>message</mat-icon>
+        </div>
+        <div>
+          <mat-icon>schedule</mat-icon>
+
+        </div>
+        <div>
+          <mat-icon>star_border</mat-icon>
+
+        </div>
+        <div>
+          <mat-icon>more_horiz</mat-icon>
+        </div>
+
+      </div>
+    </header>
+    <div class="new-page-form__body">
+      <div class="new-page-form__title">
+        <mat-form-field appearance="fill">
+          <textarea matInput
+                    placeholder="Untitled"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="new-page-form__content">
+        <mat-form-field appearance="fill">
+
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+</mat-dialog-content>

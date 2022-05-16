@@ -5,6 +5,9 @@ import { RootRoutingModule } from './root-routing.module';
 import { RootStateService } from './shared/root-state/root-state.service';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { PageNoteService } from './shared/service/page-note.service';
+import { AngularEmojisModule } from 'angular-emojis';
+import { FlexModule } from '@angular/flex-layout';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 @NgModule({
@@ -14,7 +17,11 @@ import { PageNoteService } from './shared/service/page-note.service';
   imports: [
     CommonModule,
     RootRoutingModule,
-    SidebarModule
+    SidebarModule,
+    AngularEmojisModule,
+    FlexModule,
+    PickerModule,
+
   ],
   exports: [
     RootComponent
