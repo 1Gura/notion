@@ -34,6 +34,9 @@
       <div class="new-page-form__title">
         <mat-form-field appearance="fill">
           <textarea matInput
+                    [maxLength]="100"
+                    #title
+                    (keydown)="setFocus($event)"
                     placeholder="Untitled"
                     cdkTextareaAutosize
                     #autosize="cdkTextareaAutosize"
@@ -43,12 +46,13 @@
       </div>
       <div class="new-page-form__content">
         <mat-form-field appearance="fill">
-
-          <textarea matInput
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="5"></textarea>
+          <textarea
+            #textArea
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="50"
+          ></textarea>
         </mat-form-field>
       </div>
     </div>

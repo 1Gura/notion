@@ -1,16 +1,37 @@
+:host {
+  position: relative;
+}
+
 .new-page-form {
+  width: 960px;
+  height: 80vh;
+  z-index: 100;
+
+  textarea {
+    resize: none;
+    padding: 10px;
+  }
+
   .new-page-form__delimiter {
     opacity: 0.6;
   }
 
   .new-page-form__body {
     padding: 75px;
+    height: 100%;
   }
 
   .new-page-form__title {
     textarea {
       font-size: 36px;
       font-weight: 800;
+    }
+  }
+
+  .new-page-form__content {
+    textarea {
+      font-size: 20px;
+      font-weight: 400;
     }
   }
 
@@ -21,11 +42,15 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: absolute;
+    z-index: 300;
+    background-color: #ffffff;
 
     .new-page-form__height30 {
       height: 100%;
     }
   }
+
 
   ::ng-deep {
     .mat-form-field-appearance-fill .mat-form-field-flex {
@@ -43,6 +68,34 @@
 
   }
 
+  //Mat стили
+  ::ng-deep .mat-dialog-content {
+    overflow: hidden !important;
+  }
+
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    border-top: 0;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    border-top: 0;
+  }
+
+  ::ng-deep .mat-form-field-flex {
+    padding: 0 !important;
+  }
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0 !important;
+  }
+
+
+  //Mat стили
+
   mat-form-field {
     display: block;
 
@@ -55,8 +108,5 @@
     width: 960px;
     height: 80vh;
   }
-
-  width: 960px;
-  height: 80vh;
 }
 
