@@ -32,28 +32,13 @@
     </header>
     <div class="new-page-form__body">
       <div class="new-page-form__title">
-        <mat-form-field appearance="fill">
-          <textarea matInput
-                    [maxLength]="100"
-                    #title
-                    (keydown)="setFocus($event)"
-                    placeholder="Untitled"
-                    cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize"
-                    cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
+        <app-base-text-field [placeholder]="'Untitled'" (getKey)="newTextField($event)">
+        </app-base-text-field>
       </div>
       <div class="new-page-form__content">
-        <mat-form-field appearance="fill">
-          <textarea
-            #textArea
-            matInput
-            cdkTextareaAutosize
-            #autosize="cdkTextareaAutosize"
-            cdkAutosizeMinRows="50"
-          ></textarea>
-        </mat-form-field>
+        <ng-container>
+          <app-base-text-field *ngFor="let item of listItemPage" (getKey)="newTextField($event)"></app-base-text-field>
+        </ng-container>
       </div>
     </div>
 

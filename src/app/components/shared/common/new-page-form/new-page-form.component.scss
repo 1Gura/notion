@@ -22,16 +22,22 @@
   }
 
   .new-page-form__title {
-    textarea {
-      font-size: 36px;
-      font-weight: 800;
+    ::ng-deep {
+      textarea {
+        font-size: 36px;
+        font-weight: 800;
+      }
     }
+
   }
 
   .new-page-form__content {
-    textarea {
-      font-size: 20px;
-      font-weight: 400;
+    ::ng-deep {
+      textarea {
+        font-size: 20px;
+        font-weight: 400;
+        background-color: antiquewhite;
+      }
     }
   }
 

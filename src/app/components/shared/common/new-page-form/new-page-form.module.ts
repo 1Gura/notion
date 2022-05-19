@@ -7,6 +7,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexModule } from '@angular/flex-layout';
+import { CommonModule } from '@angular/common';
+import { RootModule } from '../../../root/root.module';
+import {
+  BaseNotionComponentModule
+} from '../../../root/shared/notion-element/components/base-notion-component.module';
 
 
 @NgModule({
@@ -20,7 +25,9 @@ import { FlexModule } from '@angular/flex-layout';
     MatDialogModule,
     MatIconModule,
     FlexModule,
-
+    CommonModule,
+    RootModule,
+    BaseNotionComponentModule,
   ],
   exports: [NewPageFormComponent]
 })
