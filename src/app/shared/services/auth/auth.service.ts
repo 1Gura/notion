@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
-import { debounceTime, distinctUntilChanged, map, Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, Observable } from 'rxjs';
 import { RegisterModel } from '../../model/register.model';
 import { JwtResponseModel } from '../../model/jwt-response.model';
 import { AuthModel } from '../../model/auth.model';

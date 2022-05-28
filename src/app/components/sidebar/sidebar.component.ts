@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserModel } from '../../shared/model/user.model';
 import { RootStateService } from '../root/shared/root-state/root-state.service';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { PageNoteService } from '../root/shared/service/page-note.service';
 import { PageNoteModel } from '../root/shared/model/page-note.model';
 import { MatDialog } from '@angular/material/dialog';

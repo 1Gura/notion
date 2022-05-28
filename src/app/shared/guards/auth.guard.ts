@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   UrlTree
 } from '@angular/router';
-import { catchError, lastValueFrom, Observable, Subject, take, takeUntil, throwError } from 'rxjs';
+import { catchError, lastValueFrom, Observable, take, throwError } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtModel } from '../model/jwt.model';

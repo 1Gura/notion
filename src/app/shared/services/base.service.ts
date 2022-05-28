@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, first, Observable, Subject, throwError } from 'rxjs';
+import { catchError, Observable, Subject, throwError } from 'rxjs';
 
 export class BaseService {
   protected prefix: string = '';

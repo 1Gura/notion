@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SnackBarService } from '../../shared/services/snack-bar-service/snack-bar.service';
 
 @Component({

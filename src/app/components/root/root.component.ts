@@ -3,9 +3,6 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 import { Subject, take, takeUntil } from 'rxjs';
 import { UserModel } from '../../shared/model/user.model';
 import { RootStateService } from './shared/root-state/root-state.service';
-import { JwtModel } from '../../shared/model/jwt.model';
-import { RequestTokenModel } from '../../shared/model/request-token.model';
-import { JwtResponseModel } from '../../shared/model/jwt-response.model';
 import { Router } from '@angular/router';
 
 @Component({
