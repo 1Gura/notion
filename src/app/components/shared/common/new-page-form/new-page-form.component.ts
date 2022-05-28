@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserInfoInterface } from '../../../../shared/interfaces/user-info.interface';
 import { BaseTextFieldComponent } from '../../../root/shared/notion-element/components/base-text-field/base-text-field.component';
@@ -10,10 +10,6 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
   styleUrls: ['./new-page-form.component.scss']
 })
 export class NewPageFormComponent implements OnInit {
-  @ViewChildren(BaseTextFieldComponent) public viewChildren: QueryList<BaseTextFieldComponent> | undefined;
-  //Тут вместо any попробовать создать базовый класс от которого будут
-  // наследоваться все эелементы из библиотке компонентов для Notion
-  public listItemPage: any[] = [];
   public observerViewChild: BehaviorSubject<BaseTextFieldComponent[]> =
     new BehaviorSubject<BaseTextFieldComponent[]>([]);
   private unsubscribe: Subject<void> = new Subject<void>();
@@ -38,7 +34,6 @@ export class NewPageFormComponent implements OnInit {
       const arr: BaseTextFieldComponent[] = this.observerViewChild.value;
       arr.splice(indexTextElement + 1, 0, new BaseTextFieldComponent());
       this.observerViewChild.next(arr);
-
     }
   }
 }
