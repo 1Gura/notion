@@ -1,38 +1,44 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserInfoInterface } from '../../../../shared/interfaces/user-info.interface';
-import {
-  BaseTextFieldModel
-} from '../../../root/shared/notion-element/models/base-text-field.model';
+import { BaseTextFieldComponent } from '../../../root/shared/notion-element/components/base-text-field/base-text-field.component';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-new-page-form',
   templateUrl: './new-page-form.component.html',
   styleUrls: ['./new-page-form.component.scss']
 })
-export class NewPageFormComponent {
-  @ViewChild('title') public title: ElementRef | undefined;
-  @ViewChild('textArea') public textArea: ElementRef | undefined;
+export class NewPageFormComponent implements OnInit {
+  @ViewChildren(BaseTextFieldComponent) public viewChildren: QueryList<BaseTextFieldComponent> | undefined;
   //Тут вместо any попробовать создать базовый класс от которого будут
   // наследоваться все эелементы из библиотке компонентов для Notion
   public listItemPage: any[] = [];
+  public observerViewChild: BehaviorSubject<BaseTextFieldComponent[]> =
+    new BehaviorSubject<BaseTextFieldComponent[]>([]);
+  private unsubscribe: Subject<void> = new Subject<void>();
 
   constructor(public dialogRef: MatDialogRef<NewPageFormComponent>,
               @Inject(MAT_DIALOG_DATA) public data: UserInfoInterface,) {
   }
 
-  public setFocus(event: any): void {
-    if (event.key.toLowerCase() === 'enter') {
-      event.preventDefault();
-      this.textArea?.nativeElement.focus();
-    }
+  public ngOnInit(): void {
+    this.observerViewChild
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((data: BaseTextFieldComponent[]) => {
+      });
   }
 
-  public newTextField(event: KeyboardEvent): void {
+  public newTextField(event: KeyboardEvent, indexTextElement: number = -1): void {
+    if (event.key.toLowerCase() === 'enter' && event.shiftKey) {
+      return;
+    }
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
-      debugger
-      this.listItemPage.unshift(new BaseTextFieldModel());
+      const arr: BaseTextFieldComponent[] = this.observerViewChild.value;
+      arr.splice(indexTextElement + 1, 0, new BaseTextFieldComponent());
+      this.observerViewChild.next(arr);
+
     }
   }
 }

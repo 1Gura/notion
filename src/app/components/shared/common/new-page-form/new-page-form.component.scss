@@ -1,5 +1,12 @@
 :host {
   position: relative;
+
+  ::ng-deep {
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+
 }
 
 .new-page-form {
@@ -22,8 +29,11 @@
   }
 
   .new-page-form__title {
+    width: 100%;
+
     ::ng-deep {
       textarea {
+        width: 100%;
         font-size: 36px;
         font-weight: 800;
       }
@@ -32,11 +42,13 @@
   }
 
   .new-page-form__content {
+    width: 100%;
+
     ::ng-deep {
       textarea {
+        width: 100%;
         font-size: 20px;
         font-weight: 400;
-        background-color: antiquewhite;
       }
     }
   }

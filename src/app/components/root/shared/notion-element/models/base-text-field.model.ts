@@ -1,6 +1,7 @@
 export class BaseTextFieldModel {
   public textField: string = '';
 
-  constructor() {
+  constructor(textField: string = '') {
+    this.textField = textField;
   }
 }
