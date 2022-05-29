@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BaseTextFieldComponent } from '../base-text-field/base-text-field.component';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
 import { PageNoteModel } from '../../../model/page-note.model';
@@ -21,7 +20,11 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.rootState.titlePage.next(new BaseTextFieldComponent());
+    this.pageNote.title = new ContentBaseModel('Hello');
+    this.pageNote.content = [new ContentBaseModel('12'), new ContentBaseModel('qwe')];
+    debugger
+    this.rootState.titlePage = this.pageNote.title;
+    this.rootState.contentList = this.pageNote.content;
   }
 
 
@@ -31,9 +34,9 @@ export class PageComponent implements OnInit {
     }
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
-      const arr: ContentBaseModel[] = this.rootState.observerViewChild;
+      const arr: ContentBaseModel[] = this.rootState.contentList;
       arr.splice(indexTextElement + 1, 0, new ContentBaseModel());
-      this.rootState.observerViewChild = arr;
+      this.rootState.contentList = arr;
     }
   }
 

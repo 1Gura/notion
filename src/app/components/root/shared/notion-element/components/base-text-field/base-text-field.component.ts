@@ -18,16 +18,17 @@ import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
 export class BaseTextFieldComponent implements AfterViewInit {
   @ViewChild('textArea') public textArea: ElementRef | undefined;
   @Input() public placeholder: string = '';
-  @Input() public contentModel: ContentBaseModel = new ContentBaseModel();
+  @Input() public content: ContentBaseModel = new ContentBaseModel();
   @Output() public getKey: EventEmitter<any> = new EventEmitter<any>();
   public textFieldFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
 
   constructor() {
-    this.textFieldFormGroup.setValue(this.contentModel);
   }
 
   public ngAfterViewInit(): void {
     this.setFocus();
+    this.textFieldFormGroup.setValue(this.content);
+    debugger
   }
 
   public setFocus(): void {
