@@ -2,7 +2,8 @@
   <div class="new-page-form">
     <header class="new-page-form__header" fxLayout="row" fxLayoutAlign="space-between center">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-        <div fxLayout="row" fxLayoutAlign="start center">
+        <div (click)="openPage()" class="new-page-form__link" fxLayout="row"
+             fxLayoutAlign="start center">
           <mat-icon>fullscreen</mat-icon>
           Open as page
         </div>
@@ -18,30 +19,15 @@
         </div>
         <div>
           <mat-icon>schedule</mat-icon>
-
         </div>
         <div>
           <mat-icon>star_border</mat-icon>
-
         </div>
         <div>
           <mat-icon>more_horiz</mat-icon>
         </div>
-
       </div>
     </header>
-    <div class="new-page-form__body">
-      <div class="new-page-form__title">
-        <app-base-text-field (getKey)="newTextField($event, 0)" [placeholder]="'Untitled'">
-        </app-base-text-field>
-      </div>
-      <div class="new-page-form__content">
-        <ng-container>
-          <app-base-text-field (getKey)="newTextField($event, i)" *ngFor="let item of observerViewChild.value; index as i"
-                               [placeholder]="i.toString()"
-                               class="new-page-form__item"></app-base-text-field>
-        </ng-container>
-      </div>
-    </div>
+    <app-page></app-page>
   </div>
 </mat-dialog-content>

@@ -17,7 +17,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public listPageNote: PageNoteModel[] = [];
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(private rootState: RootStateService, private pageNoteService: PageNoteService, private dialog: MatDialog) {
+  constructor(public rootState: RootStateService,
+              private pageNoteService: PageNoteService,
+              private dialog: MatDialog) {
   }
 
   public ngOnInit(): void {
@@ -27,7 +29,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.pageNoteService.getPageNote()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((data: PageNoteModel[]) => {
-        console.log(data);
         this.listPageNote = data;
       });
   }
@@ -44,6 +45,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+
 
     });
 

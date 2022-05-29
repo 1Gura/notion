@@ -23,46 +23,28 @@
     opacity: 0.6;
   }
 
-  .new-page-form__body {
-    padding: 75px;
-    height: 100%;
-  }
-
-  .new-page-form__title {
-    width: 100%;
-
-    ::ng-deep {
-      textarea {
-        width: 100%;
-        font-size: 36px;
-        font-weight: 800;
-      }
-    }
-
-  }
-
-  .new-page-form__content {
-    width: 100%;
-
-    ::ng-deep {
-      textarea {
-        width: 100%;
-        font-size: 20px;
-        font-weight: 400;
-      }
-    }
-  }
 
   .new-page-form__header {
     width: 100%;
-    height: 30px;
+    height: fit-content;
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: absolute;
+    padding-bottom: 5px;
     z-index: 300;
     background-color: #ffffff;
+
+    .new-page-form__link {
+      cursor: pointer;
+      padding: 2px 5px;
+
+      &:hover {
+        background-color: #EFEFEF;
+        border-radius: 5px;
+      }
+    }
 
     .new-page-form__height30 {
       height: 100%;

@@ -5,17 +5,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PageComponent } from './page/page.component';
 
 @NgModule({
-  declarations: [BaseTextFieldComponent],
+  declarations: [BaseTextFieldComponent, PageComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
     TextFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  exports: [BaseTextFieldComponent]
+  exports: [BaseTextFieldComponent, PageComponent]
 })
 export class BaseNotionComponentModule {
 }

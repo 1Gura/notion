@@ -28,9 +28,10 @@
         <angular-emojis></angular-emojis>
         {{page.title}}
       </li>
+      <li></li>
     </ul>
   </nav>
-  <div class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center" (click)="openDialog()">
+  <div (click)="openDialog()" class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center">
     <mat-icon>add</mat-icon>
     <div>New page</div>
   </div>

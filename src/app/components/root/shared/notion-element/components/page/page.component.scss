@@ -1,0 +1,29 @@
+.page-form__body {
+  padding: 75px;
+  height: 100%;
+}
+
+.page-form__title {
+  width: 100%;
+
+  ::ng-deep {
+    textarea {
+      width: 100%;
+      font-size: 36px;
+      font-weight: 800;
+    }
+  }
+}
+
+
+.page-form__content {
+  width: 100%;
+
+  ::ng-deep {
+    textarea {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+}
