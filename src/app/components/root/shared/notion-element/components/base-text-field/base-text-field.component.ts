@@ -7,8 +7,8 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { BaseTextFieldModel } from '../../models/base-text-field.model';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ContentBaseModel } from '../../../model/content-base.model';
+import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
 
 @Component({
   selector: 'app-base-text-field',
@@ -18,12 +18,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class BaseTextFieldComponent implements AfterViewInit {
   @ViewChild('textArea') public textArea: ElementRef | undefined;
   @Input() public placeholder: string = '';
-  @Input() public modelView: BaseTextFieldModel = new BaseTextFieldModel();
+  @Input() public contentModel: ContentBaseModel = new ContentBaseModel();
   @Output() public getKey: EventEmitter<any> = new EventEmitter<any>();
-  public dataForm: FormGroup = new FormGroup({textField: new FormControl('')});
+  public textFieldFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
 
   constructor() {
-    this.dataForm.setValue(this.modelView);
+    this.textFieldFormGroup.setValue(this.contentModel);
   }
 
   public ngAfterViewInit(): void {

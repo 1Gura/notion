@@ -1,12 +1,12 @@
-<div [formGroup]="dataForm" class="base-text-field">
+<div [formGroup]="textFieldFormGroup" class="base-text-field">
   <mat-form-field appearance="fill">
           <textarea
             #textArea
             (keydown)="getKey.emit($event)"
+            [formControlName]="'content'"
             [placeholder]="placeholder"
             cdkAutosizeMinRows="1"
             cdkTextareaAutosize
-            formControlName='textField'
             matInput
           ></textarea>
   </mat-form-field>

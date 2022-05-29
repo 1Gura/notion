@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { BaseTextFieldComponent } from '../base-text-field/base-text-field.component';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
+import { PageNoteModel } from '../../../model/page-note.model';
+import { ContentBaseModel } from '../../../model/content-base.model';
 
 @Component({
   selector: 'app-page',
@@ -10,6 +12,7 @@ import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
+  @Input() public pageNote: PageNoteModel = new PageNoteModel();
   public titleFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
   public contentFormGroup: TextFieldFormGroup[] = [];
   private unsubscribe: Subject<void> = new Subject<void>();
@@ -28,9 +31,9 @@ export class PageComponent implements OnInit {
     }
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
-      const arr: BaseTextFieldComponent[] = this.rootState.observerViewChild.value;
-      arr.splice(indexTextElement + 1, 0, new BaseTextFieldComponent());
-      this.rootState.observerViewChild.next(arr);
+      const arr: ContentBaseModel[] = this.rootState.observerViewChild;
+      arr.splice(indexTextElement + 1, 0, new ContentBaseModel());
+      this.rootState.observerViewChild = arr;
     }
   }
 
