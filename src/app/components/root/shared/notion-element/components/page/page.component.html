@@ -9,7 +9,7 @@
   <div class="page-form__content">
     <ng-container>
       <app-base-text-field (getKey)="newTextField($event, i)"
-                           *ngFor="let item of this.rootState?.contentList; index as i"
+                           *ngFor="let item of rootState?.contentList; index as i"
                            [content]="item"
                            class="new-page-form__item"></app-base-text-field>
     </ng-container>

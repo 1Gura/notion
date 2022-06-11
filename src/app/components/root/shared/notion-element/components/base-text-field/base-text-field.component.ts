@@ -1,13 +1,14 @@
 import {
-  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
-import { ContentBaseModel } from '../../../model/content-base.model';
+import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
 
 @Component({
@@ -15,20 +16,17 @@ import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
   templateUrl: './base-text-field.component.html',
   styleUrls: ['./base-text-field.component.scss']
 })
-export class BaseTextFieldComponent implements AfterViewInit {
+export class BaseTextFieldComponent implements OnInit {
   @ViewChild('textArea') public textArea: ElementRef | undefined;
   @Input() public placeholder: string = '';
-  @Input() public content: ContentBaseModel = new ContentBaseModel();
+  @Input() public content: TextFieldFormGroup = new TextFieldFormGroup();
   @Output() public getKey: EventEmitter<any> = new EventEmitter<any>();
-  public textFieldFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
 
-  constructor() {
+  constructor(public rootState: RootStateService, private cd: ChangeDetectorRef) {
   }
 
-  public ngAfterViewInit(): void {
-    this.setFocus();
-    this.textFieldFormGroup.setValue(this.content);
-    debugger
+  public ngOnInit(): void {
+    Promise.resolve().then(() => this.setFocus());
   }
 
   public setFocus(): void {
