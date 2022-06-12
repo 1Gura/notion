@@ -1,0 +1,4 @@
+<li *ngIf="rootState.isNewPage">
+  <angular-emojis></angular-emojis>
+  {{rootState.titlePage?.get('content')?.value ? rootState.titlePage?.get('content')?.value : 'Untiled'}}
+</li>

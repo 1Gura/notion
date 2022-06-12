@@ -18,6 +18,7 @@ export class PageNoteService extends BaseService {
   }
 
   public createPageNote(pageNote: PageNoteModel): Observable<PageNoteModel> {
-    return this.post('', pageNote);
+    return this.post('', pageNote)
+      .pipe(map((data: PageNoteModel) => plainToClass(PageNoteModel, data)));
   }
 }

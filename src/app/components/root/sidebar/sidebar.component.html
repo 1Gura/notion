@@ -23,17 +23,14 @@
   <nav class="sidebar__list">
     <p>Private</p>
     <ul>
-      <li *ngFor="let page of rootState.listPageNote" class="sidebar-menu-item" fxLayout="row"
+      <li (click)="setCurrentIdPage(page.id)" *ngFor="let page of rootState.listPageNote" class="sidebar-menu-item"
+          fxLayout="row"
           fxLayoutAlign="start center"
           fxLayoutGap="30px">
         <angular-emojis></angular-emojis>
         {{page.title ? page.title : 'Untitled'}}
       </li>
-      <li>
-        <angular-emojis></angular-emojis>
-        {{rootState.titlePage?.get('content')?.value ? rootState.titlePage?.get('content')?.value : 'Untiled'}}
-      </li>
-
+      <app-observed-item></app-observed-item>
     </ul>
   </nav>
   <div (click)="createNewPage()" class="sidebar__new-page" fxLayout="row" fxLayoutAlign="start center">

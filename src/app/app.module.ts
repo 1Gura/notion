@@ -10,8 +10,6 @@ import { MaterialModule } from '../material.module';
 import { AuthService } from './shared/services/auth/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
-
-import { NewPageFormModule } from './components/shared/common/new-page-form/new-page-form.module';
 import { FormsModule } from '@angular/forms';
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -33,7 +31,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     SnackBarModule,
     MaterialModule,
     HttpClientModule,
-    NewPageFormModule,
     FormsModule
   ],
   providers: [AuthService, INTERCEPTOR_PROVIDER],

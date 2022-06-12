@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserModel } from '../../../shared/model/user.model';
 import { RootStateService } from '../shared/root-state/root-state.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { PageNoteService } from '../shared/service/page-note.service';
 import { PageNoteModel } from '../shared/model/page-note.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -42,14 +42,27 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.openDialog();
   }
 
+  public setCurrentIdPage(currentPageId: number): void {
+    this.rootState.currentPageId = currentPageId;
+  }
 
   private openDialog(): void {
+    this.rootState.isNewPage = true;
     const dialogRef = this.dialog.open(NewPageFormComponent, {
       data: {userName: this.rootState._user.value.userName}
     });
     dialogRef.afterClosed().subscribe(result => {
-
+      debugger
+      if (this.rootState.isNewPage && this.rootState.titlePage.content) {
+        const pageNote: PageNoteModel = new PageNoteModel();
+        pageNote.title = this.rootState.titlePage.content;
+        this.pageNoteService.createPageNote(pageNote)
+          .pipe(take(1), takeUntil(this.unsubscribe))
+          .subscribe((data: PageNoteModel) => {
+            this.rootState.listPageNote.push(data);
+          });
+        this.rootState.resetStateForm();
+      }
     });
-
   }
 }

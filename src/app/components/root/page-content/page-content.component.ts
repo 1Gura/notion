@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RootStateService } from '../shared/root-state/root-state.service';
 
 @Component({
   selector: 'app-page-content',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(public rootState: RootStateService) {
+  }
 
   ngOnInit(): void {
   }

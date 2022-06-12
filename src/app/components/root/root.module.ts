@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RootComponent } from './root.component';
 import { RootRoutingModule } from './root-routing.module';
 import { RootStateService } from './shared/root-state/root-state.service';
-import { SidebarModule } from './sidebar/sidebar.module';
 import { PageNoteService } from './shared/service/page-note.service';
 import { AngularEmojisModule } from 'angular-emojis';
 import { FlexModule } from '@angular/flex-layout';
@@ -13,24 +12,33 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatInputModule } from '@angular/material/input';
 import { BaseNotionComponentModule } from './shared/notion-element/components/base-notion-component.module';
 import { PageContentComponent } from './page-content/page-content.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NewPageFormComponent } from '../shared/common/new-page-form/new-page-form.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ObservedItemComponent } from './sidebar/observed-item/observed-item.component';
 
 
 @NgModule({
   declarations: [
     RootComponent,
     PageContentComponent,
+    SidebarComponent,
+    NewPageFormComponent,
+    ObservedItemComponent
   ],
   imports: [
     CommonModule,
     RootRoutingModule,
-    SidebarModule,
     AngularEmojisModule,
     FlexModule,
     PickerModule,
     MatFormFieldModule,
     TextFieldModule,
     MatInputModule,
-    BaseNotionComponentModule
+    BaseNotionComponentModule,
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
     RootComponent,

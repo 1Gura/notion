@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
-import { TypeContentEnum } from '../../../enum/type-content.enum';
 
 @Component({
   selector: ' app-page',
@@ -18,8 +17,6 @@ export class PageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.rootState.titlePage.get('type')?.setValue(TypeContentEnum.title);
-    this.rootState.titlePage.get('content')?.setValue('hello');
   }
 
 

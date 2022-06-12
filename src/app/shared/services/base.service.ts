@@ -46,7 +46,6 @@ export class BaseService {
   public put(action: string): Observable<any> {
     return this.httpClient.get(action)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
-
   }
 
   public patch(action: string, body: Object): Observable<any> {

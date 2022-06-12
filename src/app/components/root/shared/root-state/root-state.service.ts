@@ -10,8 +10,33 @@ export class RootStateService {
   public contentList: TextFieldFormGroup[] = [];
   public titlePage: TextFieldFormGroup = new TextFieldFormGroup();
   public listPageNote: PageNoteModel[] = [];
-  private num: number = Math.random();
+  private _currentIdPage: number = 0;
 
   constructor() {
   }
+
+  private _isNewPage: boolean = false;
+
+  public get isNewPage(): boolean {
+    return this._isNewPage;
+  }
+
+  public set isNewPage(isNewPage: boolean) {
+    isNewPage ? this._isNewPage = isNewPage : this._isNewPage = false;
+  }
+
+  public get currentPageId(): number {
+    return this._currentIdPage;
+  }
+
+  public set currentPageId(currentPageId: number) {
+    currentPageId ? this._currentIdPage = currentPageId : this._currentIdPage = 0;
+  }
+
+  public resetStateForm(): void {
+    this._isNewPage = false;
+    this.titlePage = new TextFieldFormGroup();
+    this.contentList = [];
+  }
 }
+
