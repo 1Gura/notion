@@ -56,6 +56,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       if (this.rootState.isNewPage && this.rootState.titlePage.content) {
         const pageNote: PageNoteModel = new PageNoteModel();
         pageNote.title = this.rootState.titlePage.content;
+        pageNote.content = this.rootState.getContentList();
         this.pageNoteService.createPageNote(pageNote)
           .pipe(take(1), takeUntil(this.unsubscribe))
           .subscribe((data: PageNoteModel) => {

@@ -29,7 +29,6 @@ export class PageComponent implements OnInit {
       const arr: TextFieldFormGroup[] = this.rootState.contentList;
       arr.splice(indexTextElement + 1, 0, new TextFieldFormGroup());
       this.rootState.contentList = arr;
-      debugger
     }
   }
 
