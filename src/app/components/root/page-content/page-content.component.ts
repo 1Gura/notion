@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RootStateService } from '../shared/root-state/root-state.service';
+import { Subject, take, takeUntil } from 'rxjs';
+import { PageNoteService } from '../shared/service/page-note.service';
+import { PageNoteModel } from '../shared/model/page-note.model';
 
 @Component({
   selector: 'app-page-content',
@@ -7,11 +10,21 @@ import { RootStateService } from '../shared/root-state/root-state.service';
   styleUrls: ['./page-content.component.scss']
 })
 export class PageContentComponent implements OnInit {
+  private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(public rootState: RootStateService) {
+  constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.rootState.currentPageId$.subscribe(id => {
+      if (id) {
+        this.pageNoteService.getPageNote(id)
+          .pipe(take(1), takeUntil(this.unsubscribe))
+          .subscribe((data: PageNoteModel) => {
+            this.rootState.titlePage.get('content')?.setValue(data.title);
+          });
+      }
+    });
   }
 
 }

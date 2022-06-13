@@ -17,6 +17,7 @@ import { NewPageFormComponent } from '../shared/common/new-page-form/new-page-fo
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ObservedItemComponent } from './sidebar/observed-item/observed-item.component';
+import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ObservedItemComponent } from './sidebar/observed-item/observed-item.com
     PageContentComponent,
     SidebarComponent,
     NewPageFormComponent,
-    ObservedItemComponent
+    ObservedItemComponent,
+    SidebarItemComponent
   ],
   imports: [
     CommonModule,

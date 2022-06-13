@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.rootState._user
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((data: UserModel) => this.userInfo = data);
-    this.pageNoteService.getPageNote()
+    this.pageNoteService.getPageNotes()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe((data: PageNoteModel[]) => {
         this.rootState.listPageNote = data;
@@ -42,17 +42,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.openDialog();
   }
 
-  public setCurrentIdPage(currentPageId: number): void {
-    this.rootState.currentPageId = currentPageId;
-  }
-
   private openDialog(): void {
     this.rootState.isNewPage = true;
     const dialogRef = this.dialog.open(NewPageFormComponent, {
       data: {userName: this.rootState._user.value.userName}
     });
     dialogRef.afterClosed().subscribe(result => {
-      debugger
       if (this.rootState.isNewPage && this.rootState.titlePage.content) {
         const pageNote: PageNoteModel = new PageNoteModel();
         pageNote.title = this.rootState.titlePage.content;

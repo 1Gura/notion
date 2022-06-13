@@ -1,0 +1,13 @@
+<li (click)="setCurrentIdPage(page.id)" *ngIf="page.id !== rootState.currentPageId$.value; else observedItem"
+    class="sidebar-menu-item"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="30px">
+  <div>
+    <angular-emojis></angular-emojis>
+    {{page.title ? page.title : 'Untitled'}}
+  </div>
+</li>
+<ng-template #observedItem>
+  <app-observed-item></app-observed-item>
+</ng-template>

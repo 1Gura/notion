@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
+import { PageNoteService } from '../../../service/page-note.service';
 
 @Component({
   selector: ' app-page',
@@ -13,10 +14,11 @@ export class PageComponent implements OnInit {
   public contentFormGroup: TextFieldFormGroup[] = [];
   private unsubscribe: Subject<void> = new Subject<void>();
 
-  constructor(public rootState: RootStateService) {
+  constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
   }
 
   public ngOnInit(): void {
+
   }
 
 

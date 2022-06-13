@@ -12,13 +12,18 @@ export class PageNoteService extends BaseService {
     super(httpClient, 'https://localhost:7151/api/PageNote');
   }
 
-  public getPageNote(): Observable<PageNoteModel[]> {
+  public getPageNotes(): Observable<PageNoteModel[]> {
     return this.get('')
       .pipe(map((data: PageNoteModel[]) => plainToClass(PageNoteModel, data)));
   }
 
   public createPageNote(pageNote: PageNoteModel): Observable<PageNoteModel> {
     return this.post('', pageNote)
+      .pipe(map((data: PageNoteModel) => plainToClass(PageNoteModel, data)));
+  }
+
+  public getPageNote(pageNoteId: number): Observable<PageNoteModel> {
+    return this.get(`${pageNoteId}`)
       .pipe(map((data: PageNoteModel) => plainToClass(PageNoteModel, data)));
   }
 }

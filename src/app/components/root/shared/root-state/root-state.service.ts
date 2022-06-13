@@ -11,6 +11,7 @@ export class RootStateService {
   public contentList: TextFieldFormGroup[] = [];
   public titlePage: TextFieldFormGroup = new TextFieldFormGroup();
   public listPageNote: PageNoteModel[] = [];
+  public currentPageId$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private _currentIdPage: number = 0;
 
   constructor() {
@@ -32,6 +33,10 @@ export class RootStateService {
 
   public set currentPageId(currentPageId: number) {
     currentPageId ? this._currentIdPage = currentPageId : this._currentIdPage = 0;
+  }
+
+  public setCurrentPageId(currentPageId: number) {
+    this.currentPageId$.next(currentPageId);
   }
 
   public resetStateForm(): void {

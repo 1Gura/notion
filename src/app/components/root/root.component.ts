@@ -32,6 +32,7 @@ export class RootComponent implements OnInit, OnDestroy {
     //       }
     //     });
     // }
+
     this.authService.getUserInfo()
       .pipe(
         take(1),
