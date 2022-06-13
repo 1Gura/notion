@@ -49,5 +49,14 @@ export class RootStateService {
     return this.contentList.map((item: TextFieldFormGroup) =>
       new ContentBaseModel(item.content));
   }
+
+  public setContentList(contents: ContentBaseModel[]): void {
+    this.contentList = contents.map((item: ContentBaseModel) => {
+        const textField: TextFieldFormGroup = new TextFieldFormGroup();
+        textField.get('content')?.setValue(item.content);
+        return textField;
+      }
+    );
+  }
 }
 
