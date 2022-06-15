@@ -1,9 +1,9 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
-export class TextFieldFormGroup extends FormGroup {
+export class TextFieldFormGroup extends UntypedFormGroup {
   constructor() {
     super({
-      content: new FormControl('')
+      content: new UntypedFormControl('')
     });
   }
 
