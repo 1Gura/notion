@@ -7,8 +7,10 @@ import { ContentBaseModel } from '../model/content-base.model';
 
 @Injectable()
 export class RootStateService {
+  public contentLoad: boolean = false;
   public _user: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
   public contentList: TextFieldFormGroup[] = [];
+  public pageIsOpen: boolean = false;
   public titlePage: TextFieldFormGroup = new TextFieldFormGroup();
   public listPageNote: PageNoteModel[] = [];
   public currentPageId$: BehaviorSubject<number> = new BehaviorSubject<number>(0);

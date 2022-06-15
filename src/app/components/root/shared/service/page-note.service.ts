@@ -7,7 +7,6 @@ import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class PageNoteService extends BaseService {
-
   constructor(httpClient: HttpClient) {
     super(httpClient, 'https://localhost:7151/api/PageNote');
   }

@@ -1,4 +1,10 @@
-<li>
-  <angular-emojis [name]="'bookmark_tabs'" [size]="'20'"></angular-emojis>
+<li *ngIf="!rootState.contentLoad; else defaultValue">
+  <angular-emojis [name]="'bookmark_tabs'" [size]="'15'"></angular-emojis>
   {{rootState.titlePage?.get('content')?.value ? rootState.titlePage?.get('content')?.value : 'Untiled' | textTruncation:20}}
 </li>
+<ng-template #defaultValue>
+  <li>
+    <angular-emojis [name]="'bookmark_tabs'" [size]="'15'"></angular-emojis>
+    {{startValue}}
+  </li>
+</ng-template>
