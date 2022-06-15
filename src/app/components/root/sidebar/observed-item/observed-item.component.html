@@ -1,4 +1,4 @@
 <li>
-  <angular-emojis></angular-emojis>
-  {{rootState.titlePage?.get('content')?.value ? rootState.titlePage?.get('content')?.value : 'Untiled'}}
+  <angular-emojis [name]="'bookmark_tabs'" [size]="'20'"></angular-emojis>
+  {{rootState.titlePage?.get('content')?.value ? rootState.titlePage?.get('content')?.value : 'Untiled' | textTruncation:20}}
 </li>

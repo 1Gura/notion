@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ObservedItemComponent } from './sidebar/observed-item/observed-item.component';
 import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
+import { TextTruncationPipe } from '../../shared/pipes/text-truncation.pipe';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.compon
     SidebarComponent,
     NewPageFormComponent,
     ObservedItemComponent,
-    SidebarItemComponent
+    SidebarItemComponent,
+    TextTruncationPipe
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,7 @@ import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.compon
     MatInputModule,
     BaseNotionComponentModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   exports: [
     RootComponent,

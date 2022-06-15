@@ -43,6 +43,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   private openDialog(): void {
+    this.rootState.resetStateForm();
     this.rootState.isNewPage = true;
     const dialogRef = this.dialog.open(NewPageFormComponent, {
       data: {userName: this.rootState._user.value.userName}

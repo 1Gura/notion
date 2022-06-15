@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RootStateService } from '../../shared/root-state/root-state.service';
 import { PageNoteModel } from '../../shared/model/page-note.model';
 
@@ -7,17 +7,13 @@ import { PageNoteModel } from '../../shared/model/page-note.model';
   templateUrl: './sidebar-item.component.html',
   styleUrls: ['./sidebar-item.component.scss']
 })
-export class SidebarItemComponent implements OnInit {
+export class SidebarItemComponent {
   @Input() public page: PageNoteModel = new PageNoteModel();
 
   constructor(public rootState: RootStateService) {
   }
 
-  ngOnInit(): void {
-  }
-
   public setCurrentIdPage(currentPageId: number): void {
     this.rootState.currentPageId$.next(currentPageId);
   }
-
 }

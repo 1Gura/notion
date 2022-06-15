@@ -4,8 +4,8 @@
     fxLayoutAlign="start center"
     fxLayoutGap="30px">
   <div>
-    <angular-emojis></angular-emojis>
-    {{page.title ? page.title : 'Untitled'}}
+    <angular-emojis [name]="'bookmark_tabs'" [size]="'20'"></angular-emojis>
+    {{page.title  | textTruncation:20}}
   </div>
 </li>
 <ng-template #observedItem>

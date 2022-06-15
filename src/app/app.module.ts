@@ -34,6 +34,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     FormsModule
   ],
   providers: [AuthService, INTERCEPTOR_PROVIDER],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

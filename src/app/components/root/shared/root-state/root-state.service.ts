@@ -41,6 +41,7 @@ export class RootStateService {
 
   public resetStateForm(): void {
     this._isNewPage = false;
+    this.currentPageId$.next(0);
     this.titlePage = new TextFieldFormGroup();
     this.contentList = [];
   }
