@@ -1,12 +1,10 @@
 <li *ngIf="!pageState.contentLoad; else defaultValue">
   <angular-emojis [name]="'bookmark_tabs'" [size]="'15'"></angular-emojis>
-  {{pageState.titlePage?.get('content')?.value
-  ? pageState.titlePage?.get('content')?.value
-  : 'Untiled' | textTruncation:20}}
+  {{pageState.titlePage.getViewContent()}}
 </li>
 <ng-template #defaultValue>
   <li>
     <angular-emojis [name]="'bookmark_tabs'" [size]="'15'"></angular-emojis>
-    {{startValue}}
+    {{startValue | textTruncation}}
   </li>
 </ng-template>
