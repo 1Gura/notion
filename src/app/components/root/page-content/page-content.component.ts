@@ -10,6 +10,7 @@ import { PageNoteModel } from '../shared/model/page-note.model';
   styleUrls: ['./page-content.component.scss']
 })
 export class PageContentComponent implements OnInit {
+  public isLoad: boolean = false;
   private unsubscribe: Subject<void> = new Subject<void>();
 
   constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
@@ -17,16 +18,22 @@ export class PageContentComponent implements OnInit {
 
   public ngOnInit(): void {
     this.rootState.currentPageId$.subscribe(id => {
-      this.rootState.contentLoad = true;
       if (id) {
         this.rootState.contentLoad = true;
+        this.isLoad = true;
         this.pageNoteService.getPageNote(id)
           .pipe(take(1), takeUntil(this.unsubscribe))
           .subscribe((data: PageNoteModel) => {
-            this.rootState.titlePage.get('content')?.setValue(data.title);
-            this.rootState.setContentList(data.content);
-            this.rootState.contentLoad = false;
-          });
+              this.rootState.titlePage.get('content')?.setValue(data.title);
+              this.rootState.setContentList(data.content);
+              this.rootState.contentLoad = false;
+              this.isLoad = false;
+            },
+            () => {
+            },
+            () => {
+              this.isLoad = false;
+            });
       }
     });
   }

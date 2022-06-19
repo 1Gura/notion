@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ObservedItemComponent } from './sidebar/observed-item/observed-item.component';
 import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
 import { TextTruncationPipe } from '../../shared/pipes/text-truncation.pipe';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { TextTruncationPipe } from '../../shared/pipes/text-truncation.pipe';
     BaseNotionComponentModule,
     MatIconModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     RootComponent,

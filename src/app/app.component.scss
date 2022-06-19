@@ -1,10 +1,27 @@
 :host {
+  ::ng-deep {
+    .container-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      //.custom-spinner {
+      //  svg {
+      //    stroke-width: 2% !important;
+      //    width: 50px !important;
+      //    height: 50px !important;
+      //  }
+      //}
+    }
+  }
+
   //Mat стили
   ::ng-deep {
     .mat-form-field {
       display: block;
     }
-
 
     //Mat стили
     //emoji
@@ -17,7 +34,5 @@
   height: 100%;
 }
 
-//Mat стили
 
 
-//Mat стили

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
@@ -9,16 +9,12 @@ import { PageNoteService } from '../../../service/page-note.service';
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })
-export class PageComponent implements OnInit {
+export class PageComponent {
   public titleFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
   public contentFormGroup: TextFieldFormGroup[] = [];
   private unsubscribe: Subject<void> = new Subject<void>();
 
   constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
-  }
-
-  public ngOnInit(): void {
-
   }
 
 
@@ -33,5 +29,4 @@ export class PageComponent implements OnInit {
       this.rootState.contentList = arr;
     }
   }
-
 }

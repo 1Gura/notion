@@ -1,1 +1,8 @@
-<app-page *ngIf="rootState.currentPageId$.value"></app-page>
+<div *ngIf="isLoad; else mainContent" class="page-container">
+  <div class="container-spinner">
+    <mat-spinner class="custom-spinner"></mat-spinner>
+  </div>
+</div>
+<ng-template #mainContent>
+  <app-page *ngIf="rootState.currentPageId$.value"></app-page>
+</ng-template>
