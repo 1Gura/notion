@@ -20,6 +20,7 @@ import { ObservedItemComponent } from './sidebar/observed-item/observed-item.com
 import { SidebarItemComponent } from './sidebar/sidebar-item/sidebar-item.component';
 import { TextTruncationPipe } from '../../shared/pipes/text-truncation.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PageStateService } from './shared/root-state/page-state.service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   exports: [
     RootComponent,
   ],
-  providers: [RootStateService, PageNoteService]
+  providers: [RootStateService, PageNoteService, PageStateService]
 })
 export class RootModule {
 }

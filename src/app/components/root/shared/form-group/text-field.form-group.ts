@@ -1,14 +1,13 @@
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
-export class TextFieldFormGroup extends UntypedFormGroup {
+export class TextFieldFormGroup extends FormGroup {
   constructor() {
     super({
-      content: new UntypedFormControl('')
+      content: new FormControl('')
     });
   }
 
   public get content(): string {
     return this.get('content')?.value;
   }
-
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RootStateService } from '../shared/root-state/root-state.service';
 import { Subject, take, takeUntil } from 'rxjs';
 import { PageNoteService } from '../shared/service/page-note.service';
 import { PageNoteModel } from '../shared/model/page-note.model';
+import { PageStateService } from '../shared/root-state/page-state.service';
 
 @Component({
   selector: 'app-page-content',
@@ -12,6 +13,7 @@ import { PageNoteModel } from '../shared/model/page-note.model';
 export class PageContentComponent implements OnInit {
   public isLoad: boolean = false;
   private unsubscribe: Subject<void> = new Subject<void>();
+  private pageState = inject(PageStateService);
 
   constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
   }
@@ -19,14 +21,14 @@ export class PageContentComponent implements OnInit {
   public ngOnInit(): void {
     this.rootState.currentPageId$.subscribe(id => {
       if (id) {
-        this.rootState.contentLoad = true;
+        this.pageState.contentLoad = true;
         this.isLoad = true;
         this.pageNoteService.getPageNote(id)
           .pipe(take(1), takeUntil(this.unsubscribe))
           .subscribe((data: PageNoteModel) => {
-              this.rootState.titlePage.get('content')?.setValue(data.title);
-              this.rootState.setContentList(data.content);
-              this.rootState.contentLoad = false;
+              this.pageState.titlePage.get('content')?.setValue(data.title);
+              this.pageState.setContentList(data.content);
+              this.pageState.contentLoad = false;
               this.isLoad = false;
             },
             () => {

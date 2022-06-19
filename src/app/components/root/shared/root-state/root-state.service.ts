@@ -3,24 +3,15 @@ import { UserModel } from '../../../../shared/model/user.model';
 import { BehaviorSubject } from 'rxjs';
 import { PageNoteModel } from '../model/page-note.model';
 import { TextFieldFormGroup } from '../form-group/text-field.form-group';
-import { ContentBaseModel } from '../model/content-base.model';
-import { NonNullableFormBuilder } from '@angular/forms';
-import { PageFormInterface } from '../interface/page-form.interface';
+import { PageStateService } from './page-state.service';
 
 @Injectable()
 export class RootStateService {
-  public contentLoad: boolean = false;
   public _user: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
-  public contentList: TextFieldFormGroup[] = [];
   public pageIsOpen: boolean = false;
-  public titlePage: TextFieldFormGroup = new TextFieldFormGroup();
   public listPageNote: PageNoteModel[] = [];
   public currentPageId$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  private formGenerator = inject(NonNullableFormBuilder);
-  public pageFormGroup = this.formGenerator.group<PageFormInterface>({
-    titlePage: '',
-    contentList: []
-  });
+  private pageState = inject(PageStateService);
   private _currentIdPage: number = 0;
 
   constructor() {
@@ -52,22 +43,8 @@ export class RootStateService {
   public resetStateForm(): void {
     this._isNewPage = false;
     this.currentPageId$.next(0);
-    this.titlePage = new TextFieldFormGroup();
-    this.contentList = [];
-  }
-
-  public getContentList(): ContentBaseModel[] {
-    return this.contentList.map((item: TextFieldFormGroup) =>
-      new ContentBaseModel(item.content));
-  }
-
-  public setContentList(contents: ContentBaseModel[]): void {
-    this.contentList = contents.map((item: ContentBaseModel) => {
-        const textField: TextFieldFormGroup = new TextFieldFormGroup();
-        textField.get('content')?.setValue(item.content);
-        return textField;
-      }
-    );
+    this.pageState.titlePage = new TextFieldFormGroup();
+    this.pageState.contentList = [];
   }
 }
 

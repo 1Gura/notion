@@ -1,19 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { RootStateService } from '../../shared/root-state/root-state.service';
+import { Component, inject, Input } from '@angular/core';
+import { PageStateService } from '../../shared/root-state/page-state.service';
 
 @Component({
   selector: 'app-observed-item',
   templateUrl: './observed-item.component.html',
   styleUrls: ['./observed-item.component.scss']
 })
-export class ObservedItemComponent implements OnInit {
+export class ObservedItemComponent {
   @Input() public startValue: string = '';
+  pageState = inject(PageStateService);
 
-  constructor(public rootState: RootStateService) {
+  constructor() {
   }
-
-  ngOnInit(): void {
-    console.log(this.startValue);
-  }
-
 }

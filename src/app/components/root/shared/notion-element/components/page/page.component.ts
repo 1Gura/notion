@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { RootStateService } from '../../../root-state/root-state.service';
 import { TextFieldFormGroup } from '../../../form-group/text-field.form-group';
-import { PageNoteService } from '../../../service/page-note.service';
+import { PageStateService } from '../../../root-state/page-state.service';
 
 @Component({
   selector: ' app-page',
@@ -10,11 +9,9 @@ import { PageNoteService } from '../../../service/page-note.service';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent {
-  public titleFormGroup: TextFieldFormGroup = new TextFieldFormGroup();
-  public contentFormGroup: TextFieldFormGroup[] = [];
-  private unsubscribe: Subject<void> = new Subject<void>();
+  pageState = inject(PageStateService);
 
-  constructor(public rootState: RootStateService, private pageNoteService: PageNoteService) {
+  constructor(public rootState: RootStateService) {
   }
 
 
@@ -24,9 +21,9 @@ export class PageComponent {
     }
     if (event.key.toLowerCase() === 'enter') {
       event.preventDefault();
-      const arr: TextFieldFormGroup[] = this.rootState.contentList;
+      const arr: TextFieldFormGroup[] = this.pageState.contentList;
       arr.splice(indexTextElement + 1, 0, new TextFieldFormGroup());
-      this.rootState.contentList = arr;
+      this.pageState.contentList = arr;
     }
   }
 }
