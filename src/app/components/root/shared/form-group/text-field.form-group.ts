@@ -1,9 +1,13 @@
 import { FormControl, FormGroup } from '@angular/forms';
+import { TypeElementEnum } from '../notion-element/shared/type-element.enum';
 
 export class TextFieldFormGroup extends FormGroup {
   constructor() {
     super({
-      content: new FormControl('')
+      id: new FormControl(0),
+      type: new FormControl(TypeElementEnum.TextField),
+      content: new FormControl(''),
+      userId: new FormControl(0)
     });
   }
 
