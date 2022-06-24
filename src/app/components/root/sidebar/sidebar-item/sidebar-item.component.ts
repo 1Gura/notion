@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RootStateService } from '../../shared/root-state/root-state.service';
 import { PageNoteModel } from '../../shared/model/page-note.model';
+import { PageNoteShortModel } from '../../shared/model/page-note-short.model';
 
 @Component({
   selector: 'app-sidebar-item',
@@ -8,7 +9,7 @@ import { PageNoteModel } from '../../shared/model/page-note.model';
   styleUrls: ['./sidebar-item.component.scss']
 })
 export class SidebarItemComponent {
-  @Input() public page: PageNoteModel = new PageNoteModel();
+  @Input() public page: PageNoteShortModel = new PageNoteModel();
 
   constructor(public rootState: RootStateService) {
   }

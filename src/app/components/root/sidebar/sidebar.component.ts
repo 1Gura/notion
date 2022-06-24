@@ -7,6 +7,7 @@ import { PageNoteModel } from '../shared/model/page-note.model';
 import { MatDialog } from '@angular/material/dialog';
 import { NewPageFormComponent } from '../../shared/common/new-page-form/new-page-form.component';
 import { PageStateService } from '../shared/root-state/page-state.service';
+import { PageNoteShortModel } from '../shared/model/page-note-short.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -29,7 +30,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       .subscribe((data: UserModel) => this.userInfo = data);
     this.pageNoteService.getPageNotes()
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe((data: PageNoteModel[]) => {
+      .subscribe((data: PageNoteShortModel[]) => {
         this.rootState.listPageNote = data;
       });
 

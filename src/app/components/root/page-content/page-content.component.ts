@@ -25,9 +25,8 @@ export class PageContentComponent implements OnInit {
         this.isLoad = true;
         this.pageNoteService.getPageNote(id)
           .pipe(take(1), takeUntil(this.unsubscribe))
-          .subscribe((data: PageNoteModel) => {
-              this.pageState.titlePage.get('content')?.setValue(data.title);
-              this.pageState.setContentList(data.content);
+          .subscribe((page: PageNoteModel) => {
+              this.pageState.setTitlePage(page);
               this.pageState.contentLoad = false;
               this.isLoad = false;
             },

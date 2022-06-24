@@ -1,3 +1,4 @@
 export enum TypeElementEnum {
-  TextField = 0
+  Title = 0,
+  BaseTextField = 1,
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { PageNoteModel } from '../model/page-note.model';
 import { plainToClass } from 'class-transformer';
+import { PageNoteShortModel } from '../model/page-note-short.model';
 
 @Injectable()
 export class PageNoteService extends BaseService {
@@ -11,9 +12,9 @@ export class PageNoteService extends BaseService {
     super(httpClient, 'https://localhost:7151/api/PageNote');
   }
 
-  public getPageNotes(): Observable<PageNoteModel[]> {
+  public getPageNotes(): Observable<PageNoteShortModel[]> {
     return this.get('')
-      .pipe(map((data: PageNoteModel[]) => plainToClass(PageNoteModel, data)));
+      .pipe(map((data: PageNoteShortModel[]) => plainToClass(PageNoteShortModel, data)));
   }
 
   public createPageNote(pageNote: PageNoteModel): Observable<PageNoteModel> {
